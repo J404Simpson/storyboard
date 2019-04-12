@@ -1,0 +1,58 @@
+{
+  "name": "storyboard",
+  "version": "0.0.1",
+  "description": "A nice way to waste some time",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "concurrently \"node server\" \"webpack --watch\"",
+    "dev": "concurrently \"yarn client\" \"yarn server\"",
+    "client": "webpack --watch",
+    "server": "nodemon server --ignore server/public",
+    "knex": "knex",
+    "test": "jest --watchAll",
+    "updateDb": "rm -f dev.sqlite3 && yarn knex migrate:latest && yarn knex seed:run"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-class-properties",
+      "@babel/plugin-proposal-object-rest-spread"
+    ]
+  },
+  "dependencies": {
+    "concurrently": "^4.1.0",
+    "knex": "^0.16.5",
+    "node": "^11.13.0",
+    "react": "^16.8.6",
+    "react-mail-form": "^1.0.3",
+    "react-redux": "^7.0.1",
+    "react-router-dom": "^5.0.0",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
+    "sqlite3": "^4.0.6",
+    "webpack": "^4.29.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/plugin-proposal-class-properties": "^7.3.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-react": "^7.0.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^24.1.0",
+    "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.10.0",
+    "jest": "^24.1.0",
+    "nodemon": "^1.18.10",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
+    "style-loader": "^0.23.1",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.2.1"
+  }
+}
