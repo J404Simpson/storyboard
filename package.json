@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "concurrently": "^4.1.0",
+    "express": "^4.16.4",
     "knex": "^0.16.5",
     "node": "^11.13.0",
     "react": "^16.8.6",
@@ -33,6 +34,7 @@
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "sqlite3": "^4.0.6",
+    "superagent": "^5.0.2",
     "webpack": "^4.29.6"
   },
   "devDependencies": {
@@ -49,10 +51,13 @@
     "enzyme-adapter-react-16": "^1.10.0",
     "jest": "^24.1.0",
     "nodemon": "^1.18.10",
-    "react": "^16.8.3",
+    "react": "^16.8.6",
     "react-dom": "^16.8.3",
     "style-loader": "^0.23.1",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.2.1"
-  }
+  },
+  "repository": "https://github.com/jason-simpson/storyboard.git",
+  "author": "Jason J Simpson <jasonjamessimpson@gmail.com>",
+  "license": "MIT"
 }
