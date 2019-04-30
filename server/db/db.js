@@ -4,7 +4,7 @@ const connection = require('knex')(config)
 
 module.exports = {
   getSentences,
-  saveSentences
+  addSentences
 }
 
 function getSentences (db = connection) {
@@ -12,7 +12,7 @@ function getSentences (db = connection) {
     .select()
 }
 
-function saveSentences (sentence, db = connection) {
+function addSentences (sentence, db = connection) {
   return db('sentences')
     .insert({
       sentence: sentence
