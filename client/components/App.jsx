@@ -6,20 +6,42 @@ import Intro from './Intro'
 import NewSentence from './NewSentence'
 import Story from './Story'
 
+import {getSentences} from '../api'
+
 export default class App extends React.Component {
   constructor (props) {
     super(props)
 
     this.state = {
       error: null,
-      story: [],
+      sentences: [],
       newSentence: null,
       introVisible: true,
       newSentenceVisible: false,
       storyVisible: false
     }
 
+    this.refreshStory = this.refreshStory.bind(this)
+    this.renderStory = this.renderStory.bind(this)
     this.addNewSentence = this.addNewSentence.bind(this)
+  }
+
+  componentDidMount () {
+    this.refreshStory()
+  }
+
+  renderStory (err, sentences) {
+    this.setState({
+      error: err,
+      sentences: sentences || []
+    })
+  }
+
+  refreshStory (err) {
+    this.setState({
+      error: err
+    })
+    getSentences(this.renderStory)
   }
 
   addNewSentence () {
@@ -34,8 +56,9 @@ export default class App extends React.Component {
       <div>
         <ErrorMessage error={this.state.error} />
 
-        {this.state.introVisible && <Intro
-          addNewSentence={this.addNewSentence} />}
+        <Story
+          sentences={this.state.sentences}
+          addNewSentence={this.addNewSentence} />
 
         {this.state.newSentenceVisible && <NewSentence
         />}

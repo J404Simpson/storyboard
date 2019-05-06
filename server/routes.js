@@ -1,11 +1,11 @@
 const express = require('express')
-const router = express.Router()
 const db = require('./db/db')
+const router = express.Router()
 
 router.get('/', (req, res) => {
   db.getSentences()
     .then(sentences => {
-      res.json(sentences)
+      res.send(sentences)
     })
     .catch(err => {
       res.status(500).send(err.message)
@@ -13,11 +13,8 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  const sentence = req.params
-  db.addSentences(sentence)
-    .catch(err => {
-      res.status(500).send(err.message)
-    })
+  db.addSentences(req.body)
+    .then(res.sendStatus(200))
 })
 
 module.exports = router
