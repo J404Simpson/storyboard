@@ -2,9 +2,8 @@ import React from 'react'
 
 import ErrorMessage from './ErrorMessage'
 import Header from './Header'
-import Intro from './Intro'
-import NewSentence from './NewSentence'
 import Story from './Story'
+import NewSentence from './NewSentence'
 
 import {getSentences} from '../api'
 
@@ -14,7 +13,7 @@ export default class App extends React.Component {
 
     this.state = {
       error: null,
-      sentences: [],
+      sentences: null,
       newSentence: null,
       introVisible: true,
       newSentenceVisible: false,
@@ -33,7 +32,7 @@ export default class App extends React.Component {
   renderStory (err, sentences) {
     this.setState({
       error: err,
-      sentences: sentences || []
+      sentences: sentences
     })
   }
 
@@ -54,14 +53,18 @@ export default class App extends React.Component {
   render () {
     return (
       <div>
-        <ErrorMessage error={this.state.error} />
+        <ErrorMessage
+          error={this.state.error}
+        />
+
+        <Header />
 
         <Story
           sentences={this.state.sentences}
-          addNewSentence={this.addNewSentence} />
+          addNewSentence={this.addNewSentence}
+        />
 
-        {this.state.newSentenceVisible && <NewSentence
-        />}
+        {this.state.newSentenceVisible && <NewSentence />}
 
       </div>
     )

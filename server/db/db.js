@@ -9,7 +9,9 @@ module.exports = {
 
 function getSentences (db = connection) {
   return db('sentences')
-    .select()
+    .map((row) => {
+      return row.sentence
+    })
 }
 
 function addSentences (sentence, db = connection) {
