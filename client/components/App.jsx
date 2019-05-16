@@ -3,6 +3,7 @@ import React from 'react'
 import ErrorMessage from './ErrorMessage'
 import Header from './Header'
 import Story from './Story'
+import Footer from './Footer'
 import NewSentence from './NewSentence'
 
 import {getSentences} from '../api'
@@ -15,7 +16,7 @@ export default class App extends React.Component {
       error: null,
       sentences: null,
       newSentence: null,
-      introVisible: true,
+      footerVisible: true,
       newSentenceVisible: false,
       storyVisible: false
     }
@@ -45,7 +46,7 @@ export default class App extends React.Component {
 
   addNewSentence () {
     this.setState({
-      introVisible: false,
+      footerVisible: false,
       newSentenceVisible: true
     })
   }
@@ -63,6 +64,10 @@ export default class App extends React.Component {
           sentences={this.state.sentences}
           addNewSentence={this.addNewSentence}
         />
+
+        {this.state.footerVisible && <Footer
+          addNewSentence={this.addNewSentence}
+        />}
 
         {this.state.newSentenceVisible && <NewSentence />}
 
