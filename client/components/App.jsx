@@ -17,8 +17,7 @@ export default class App extends React.Component {
       sentences: null,
       newSentence: null,
       footerVisible: true,
-      newSentenceVisible: false,
-      storyVisible: false
+      newSentenceVisible: false
     }
 
     this.refreshStory = this.refreshStory.bind(this)
@@ -44,7 +43,7 @@ export default class App extends React.Component {
     getSentences(this.renderStory)
   }
 
-  addNewSentence () {
+  showNewSentence () {
     this.setState({
       footerVisible: false,
       newSentenceVisible: true
@@ -62,11 +61,10 @@ export default class App extends React.Component {
 
         <Story
           sentences={this.state.sentences}
-          addNewSentence={this.addNewSentence}
         />
 
         {this.state.footerVisible && <Footer
-          addNewSentence={this.addNewSentence}
+          showNewSentence={this.showNewSentence}
         />}
 
         {this.state.newSentenceVisible && <NewSentence />}
