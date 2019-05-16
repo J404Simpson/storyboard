@@ -7,12 +7,17 @@ class NewSentence extends React.Component {
       newSentence: null
     }
     this.handleChange = this.handleChange.bind(this)
+    this.submitNewSentence = this.submitNewSentence
   }
 
   handleChange (e) {
     this.setState({
       [e.target.name]: e.target.value
     })
+  }
+
+  submitNewSentence () {
+    this.props.addNewSentence(this.state.newSentence)
   }
 
   render () {
@@ -24,6 +29,8 @@ class NewSentence extends React.Component {
             <input name='newSentence' placeholder='...' onChange={this.handleChange} value={this.state.newSentence} />
           </p>
         </form>
+        <button type='button' onClick={this.addNewSentence}>Submit</button>
+        <button type='button' onClick={this.props.showFooter}>Cancel</button>
       </div>
     )
   }

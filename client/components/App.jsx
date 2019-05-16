@@ -6,7 +6,7 @@ import Story from './Story'
 import Footer from './Footer'
 import NewSentence from './NewSentence'
 
-import {getSentences} from '../api'
+import {getSentences, addSentences} from '../api'
 
 export default class App extends React.Component {
   constructor (props) {
@@ -22,6 +22,8 @@ export default class App extends React.Component {
 
     this.refreshStory = this.refreshStory.bind(this)
     this.renderStory = this.renderStory.bind(this)
+    this.showNewSentence = this.showNewSentence.bind(this)
+    this.showFooter = this.showFooter.bind(this)
     this.addNewSentence = this.addNewSentence.bind(this)
   }
 
@@ -43,10 +45,24 @@ export default class App extends React.Component {
     getSentences(this.renderStory)
   }
 
+  addNewSentence (newSentence) {
+    this.setState({
+      newSentence: newSentence
+    })
+    addSentences(this.state.newSentence, this.refreshStory)
+  }
+
   showNewSentence () {
     this.setState({
       footerVisible: false,
       newSentenceVisible: true
+    })
+  }
+
+  showFooter () {
+    this.setState({
+      footerVisible: true,
+      newSentenceVisible: false
     })
   }
 
@@ -67,7 +83,10 @@ export default class App extends React.Component {
           showNewSentence={this.showNewSentence}
         />}
 
-        {this.state.newSentenceVisible && <NewSentence />}
+        {this.state.newSentenceVisible && <NewSentence
+          addNewSentence={this.addNewSentence}
+          showFooter={this.showFooter}
+        />}
 
       </div>
     )
