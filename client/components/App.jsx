@@ -6,7 +6,7 @@ import Story from './Story'
 import Footer from './Footer'
 import NewSentence from './NewSentence'
 
-import {getSentences, addSentences} from '../api'
+import {getSentences} from '../api'
 
 export default class App extends React.Component {
   constructor (props) {
@@ -15,7 +15,6 @@ export default class App extends React.Component {
     this.state = {
       error: null,
       sentences: null,
-      newSentence: null,
       footerVisible: true,
       newSentenceVisible: false
     }
@@ -24,11 +23,19 @@ export default class App extends React.Component {
     this.renderStory = this.renderStory.bind(this)
     this.showNewSentence = this.showNewSentence.bind(this)
     this.showFooter = this.showFooter.bind(this)
-    this.addNewSentence = this.addNewSentence.bind(this)
   }
 
   componentDidMount () {
     this.refreshStory()
+  }
+
+  refreshStory (err) {
+    this.setState({
+      error: err,
+      footerVisible: true,
+      newSentenceVisible: false
+    })
+    getSentences(this.renderStory)
   }
 
   renderStory (err, sentences) {
@@ -36,20 +43,6 @@ export default class App extends React.Component {
       error: err,
       sentences: sentences
     })
-  }
-
-  refreshStory (err) {
-    this.setState({
-      error: err
-    })
-    getSentences(this.renderStory)
-  }
-
-  addNewSentence (newSentence) {
-    this.setState({
-      newSentence: newSentence
-    })
-    addSentences(this.state.newSentence, this.refreshStory)
   }
 
   showNewSentence () {
@@ -84,8 +77,8 @@ export default class App extends React.Component {
         />}
 
         {this.state.newSentenceVisible && <NewSentence
-          addNewSentence={this.addNewSentence}
           showFooter={this.showFooter}
+          refreshStory={this.refreshStory}
         />}
 
       </div>

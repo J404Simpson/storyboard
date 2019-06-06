@@ -17,6 +17,6 @@ function getSentences (db = connection) {
 function addSentences (sentence, db = connection) {
   return db('sentences')
     .insert({
-      sentence: sentence
+      sentence: sentence.newSentence
     })
 }
