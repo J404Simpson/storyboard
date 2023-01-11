@@ -26,7 +26,7 @@
     "concurrently": "^4.1.0",
     "cors": "^2.8.5",
     "express": "^4.16.4",
-    "knex": "^0.16.5",
+    "knex": "^2.4.0",
     "node": "^11.13.0",
     "react": "^16.8.6",
     "react-mail-form": "^1.0.3",
